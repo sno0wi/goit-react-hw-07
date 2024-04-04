@@ -8,9 +8,11 @@ import { apiGetContacts } from './redux/contactsOps.js';
 
 function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(apiGetContacts());
   }, [dispatch]);
+
   return (
     <div className="wrapper">
       <h1>Phonebook</h1>

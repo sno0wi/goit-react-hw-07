@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { apiGetContacts } from './contactsOps.js';
+import {
+  apiGetContacts,
+  apiPostContacts,
+  apiDelContacts,
+} from './contactsOps.js';
 
 const contactsInitialState = {
   contacts: {
@@ -25,11 +29,40 @@ const contactsSlice = createSlice({
       .addCase(apiGetContacts.rejected, state => {
         state.contacts.loading = false;
         state.contacts.error = true;
+      })
+
+      .addCase(apiPostContacts.pending, state => {
+        state.contacts.loading = true;
+        state.contacts.error = false;
+      })
+      .addCase(apiPostContacts.fulfilled, (state, action) => {
+        state.contacts.loading = false;
+        state.contacts.items.push(action.payload);
+      })
+      .addCase(apiPostContacts.rejected, state => {
+        state.contacts.loading = false;
+        state.contacts.error = true;
+      })
+
+      .addCase(apiDelContacts.pending, state => {
+        state.contacts.loading = true;
+        state.contacts.error = false;
+      })
+      .addCase(apiDelContacts.fulfilled, (state, action) => {
+        state.contacts.loading = false;
+        state.contacts.items = state.contacts.items.filter(
+          contact => contact.id !== action.payload.id
+        );
+        const test = action.payload;
+        console.log(test);
+      })
+      .addCase(apiDelContacts.rejected, state => {
+        state.contacts.loading = false;
+        state.contacts.error = true;
       });
   },
 });
 
 export const selectContacts = state => state.contacts.contacts.items;
 
-export const { addContacts, deleteContacts } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;

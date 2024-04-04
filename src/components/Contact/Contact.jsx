@@ -1,14 +1,14 @@
 import { IoIosContact } from 'react-icons/io';
 import { FaPhone } from 'react-icons/fa6';
-import { deleteContacts } from '../../redux/contactsReducer';
 import css from '../Contact/Contact.module.css';
 import { useDispatch } from 'react-redux';
+import { apiDelContacts } from '../../redux/contactsOps';
 
 const Contact = ({ contact }) => {
   const dispatch = useDispatch();
 
   const handleDeleteContact = () => {
-    dispatch(deleteContacts(contact.id));
+    dispatch(apiDelContacts(contact.id));
   };
 
   return (

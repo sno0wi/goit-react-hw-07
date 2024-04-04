@@ -8,16 +8,16 @@ export const fetchContacts = async () => {
 };
 
 export const addContact = async contactData => {
-  const response = await axios.post(
+  const { data } = await axios.post(
     'https://660e52936ddfa2943b3663ff.mockapi.io/contacts',
     contactData
   );
-  return response.data;
+  return data;
 };
 
 export const deleteContact = async contactId => {
-  const response = await axios.delete(
+  const { data } = await axios.delete(
     `https://660e52936ddfa2943b3663ff.mockapi.io/contacts/${contactId}`
   );
-  return response.data;
+  return data;
 };
