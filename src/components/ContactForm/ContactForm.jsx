@@ -1,7 +1,7 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import css from '../ContactForm/ContactForm.module.css';
-import { addContacts } from '../../redux/contactsSlice';
+import { addContacts } from '../../redux/contactsReducer';
 import { useDispatch } from 'react-redux';
 
 const contactSchema = Yup.object().shape({
