@@ -11,11 +11,19 @@ const contactsInitialState = {
     loading: false,
     error: null,
   },
+  filters: {
+    name: '',
+  },
 };
 
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
+  reducers: {
+    changeFilter(state, action) {
+      state.filters.name = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(apiGetContacts.pending, state => {
@@ -61,8 +69,12 @@ const contactsSlice = createSlice({
   },
 });
 
-export const selectContacts = state => state.contacts.contacts.items;
-export const selectLoading = state => state.contacts.contacts.loading;
-export const selectError = state => state.contacts.contacts.error;
+export const selectContacts = state => state.contacts.items;
+export const selectLoading = state => state.contacts.loading;
+export const selectError = state => state.contacts.error;
+export const selectNameFilter = state => state.filters.name;
+
+export const { changeFilter } = contactsSlice.actions;
+export const filtersReducer = contactsSlice.reducer;
 
 export const contactsReducer = contactsSlice.reducer;

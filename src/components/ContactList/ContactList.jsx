@@ -1,6 +1,6 @@
 import Contact from '../Contact/Contact.jsx';
 import { selectContacts } from '../../redux/contactsReducer.js';
-import { selectNameFilter } from '../../redux/filtersReducer.js';
+import { selectNameFilter } from '../../redux/contactsReducer.js';
 import { useSelector } from 'react-redux';
 import { selectError, selectLoading } from '../../redux/contactsReducer.js';
 import Loader from '../Loader/Loader.jsx';

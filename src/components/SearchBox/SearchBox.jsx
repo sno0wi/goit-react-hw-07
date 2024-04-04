@@ -1,5 +1,5 @@
 import css from '../SearchBox/SearchBox.module.css';
-import { changeFilter } from '../../redux/filtersReducer';
+import { changeFilter } from '../../redux/contactsReducer.js';
 import { useDispatch } from 'react-redux';
 
 const SearchBox = () => {
